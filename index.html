@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Organizer - Learn Insertion Sort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="An interactive educational game to learn the insertion sort algorithm by organizing books on a virtual bookshelf.">
+</head>
+<body>
+    <div class="app-container">
+        <header class="glass-panel">
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>Library Book Organizer</h1>
+                    <p class="subtitle">Learn Insertion Sort through Interactive Play</p>
+                </div>
+                <div class="stats-panel">
+                    <div class="stat-box">
+                        <span class="stat-label">Timer</span>
+                        <span id="timer" class="stat-value">00:00</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Moves</span>
+                        <span id="moves" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Comparisons</span>
+                        <span id="comparisons" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-panel">
+                <div class="difficulty-selector">
+                    <span class="control-label">Difficulty:</span>
+                    <button class="diff-btn active" data-level="easy">Easy (5)</button>
+                    <button class="diff-btn" data-level="medium">Medium (8)</button>
+                    <button class="diff-btn" data-level="hard">Hard (12)</button>
+                </div>
+                <div class="actions">
+                    <button id="hint-btn" class="btn outline">Hint</button>
+                    <button id="auto-solve-btn" class="btn outline">Auto Solve</button>
+                    <button id="reset-btn" class="btn primary">Restart</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <main class="game-board glass-panel">
+                <div class="board-header">
+                    <h2>Virtual Bookshelf</h2>
+                    <span class="status-badge" id="game-status">Ready to Start</span>
+                </div>
+                
+                <div class="bookshelf-container">
+                    <div id="bookshelf" class="bookshelf">
+                        <!-- Books will be injected here via JS -->
+                    </div>
+                    <div class="shelf-base"></div>
+                </div>
+
+                <div class="instruction-prompt" id="instruction-prompt">
+                    Select a difficulty and click Restart to begin!
+                </div>
+            </main>
+
+            <aside class="educational-overlay glass-panel">
+                <h2>Algorithm Steps</h2>
+                <div class="step-card">
+                    <div id="step-description" class="step-desc">
+                        Insertion sort iterates, consuming one input element each repetition, and grows a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.
+                    </div>
+                </div>
+                
+                <div class="complexity-info">
+                    <h3>Time Complexity</h3>
+                    <div class="complexity-grid">
+                        <div class="complexity-item">
+                            <span class="badge best">Best Case</span>
+                            <span class="value">O(n)</span>
+                            <span class="note">Already sorted</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span class="badge avg">Average</span>
+                            <span class="value">O(n&sup2;)</span>
+                            <span class="note">Random order</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span class="badge worst">Worst Case</span>
+                            <span class="value">O(n&sup2;)</span>
+                            <span class="note">Reverse sorted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <h3>Legend</h3>
+                    <div class="legend-item">
+                        <span class="color-box sorted"></span> 
+                        <span>Sorted Portion</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box unsorted"></span> 
+                        <span>Unsorted Portion</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box active"></span> 
+                        <span>Key Element (Next to sort)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box highlight-compare"></span> 
+                        <span>Being Compared</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- Modal for win state -->
+    <div id="win-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <h2>🎉 Sort Complete! 🎉</h2>
+            <p>You have successfully sorted the bookshelf using Insertion Sort.</p>
+            <div class="final-stats">
+                <div>Time: <span id="final-time">00:00</span></div>
+                <div>Moves: <span id="final-moves">0</span></div>
+                <div>Comparisons: <span id="final-comp">0</span></div>
+            </div>
+            <button id="play-again-btn" class="btn primary">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
